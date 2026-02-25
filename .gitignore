@@ -1,0 +1,9 @@
+# 忽略 web-portfolio 的构建产物（根目录的 dist 会被提交）
+web-portfolio/dist
+
+# 开发文件
+.claude
+
+# 其他
+WebCreater/
+*.log
