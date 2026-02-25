@@ -1,0 +1,367 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 启动画面 */
+.boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-color);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.boot-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-screen .line {
+  margin: 2px 0;
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.boot-screen .line:nth-child(1) { animation-delay: 0.2s; }
+.boot-screen .line:nth-child(2) { animation-delay: 0.5s; }
+.boot-screen .line:nth-child(3) { animation-delay: 0.8s; }
+.boot-screen .line:nth-child(4) { animation-delay: 1.1s; }
+.boot-screen .line:nth-child(5) { animation-delay: 1.4s; }
+.boot-screen .line:nth-child(6) { animation-delay: 1.7s; }
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* 主内容 */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+/* 顶部信息栏 */
+.top-bar {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.status {
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--secondary-color);
+}
+
+.coord {
+  text-align: right;
+  color: var(--secondary-color);
+}
+
+/* 滚动文字区域 */
+.marquee-section {
+  padding: 40px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--dim-color);
+  border-bottom: 1px solid var(--dim-color);
+  position: relative;
+}
+
+.marquee-section.top {
+  margin-bottom: 60px;
+}
+
+.marquee-section.bottom {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.marquee-track {
+  display: flex;
+  animation: scroll 20s linear infinite;
+}
+
+.marquee-content {
+  display: flex;
+  white-space: nowrap;
+  padding-right: 50px;
+}
+
+.marquee-text {
+  font-size: 14px;
+  letter-spacing: 8px;
+  color: var(--secondary-color);
+  padding: 0 25px;
+  text-transform: uppercase;
+}
+
+.marquee-section.bottom .marquee-text {
+  color: var(--primary-color);
+  text-shadow: 0 0 8px var(--secondary-color);
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* 英雄区域 */
+.hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.hero-name {
+  font-size: clamp(32px, 8vw, 72px);
+  font-weight: 700;
+  letter-spacing: 12px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--dim-color);
+  animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+  0%, 90%, 100% {
+    text-shadow: 0 0 20px var(--secondary-color), 0 0 40px var(--dim-color);
+  }
+  92% {
+    text-shadow: -2px 0 #ff00ff, 2px 0 var(--primary-color);
+  }
+  94% {
+    text-shadow: 2px 0 #ff00ff, -2px 0 var(--primary-color);
+  }
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: var(--secondary-color);
+  margin-bottom: 30px;
+}
+
+.hero-bio {
+  font-size: 18px;
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px var(--dim-color);
+}
+
+.hero-tech {
+  display: flex;
+  gap: 20px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--secondary-color);
+}
+
+.hero-tech span {
+  padding: 8px 16px;
+  border: 1px solid var(--dim-color);
+  transition: all 0.3s ease;
+}
+
+.hero-tech span:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--secondary-color);
+}
+
+/* 作品区域 */
+.works-section {
+  padding: 60px 40px;
+}
+
+.works-title {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--secondary-color);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.work-card {
+  border: 1px solid var(--dim-color);
+  padding: 30px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.work-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.work-card:hover {
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 30px var(--dim-color);
+}
+
+.work-card:hover::before {
+  transform: scaleX(1);
+}
+
+.work-title {
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  color: var(--primary-color);
+}
+
+.work-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--secondary-color);
+}
+
+/* 提示区域 */
+.hint-section {
+  padding: 40px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--dim-color);
+}
+
+/* 页脚 */
+.footer {
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--dim-color);
+  font-size: 11px;
+}
+
+.footer-copy {
+  color: var(--dim-color);
+  letter-spacing: 1px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-social a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-social a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--primary-color);
+  transition: width 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: var(--primary-color);
+  text-shadow: 0 0 10px var(--secondary-color);
+}
+
+.footer-social a:hover::after {
+  width: 100%;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 20px;
+  }
+
+  .coord {
+    text-align: left;
+  }
+
+  .hero-name {
+    letter-spacing: 4px;
+  }
+
+  .hero-tech {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .works-section {
+    padding: 40px 20px;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .footer-social {
+    gap: 20px;
+  }
+}
+
+/* CRT 扫描线效果 */
+.app::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 255, 65, 0.03),
+    rgba(0, 255, 65, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 999;
+}
