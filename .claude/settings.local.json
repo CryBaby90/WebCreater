@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm run:*)",
       "Bash(git add:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(git commit:*)",
+      "Bash(git pull:*)"
     ]
   }
 }
