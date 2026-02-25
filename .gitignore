@@ -1,5 +1,6 @@
-# 忽略 web-portfolio 的构建产物（根目录的 dist 会被提交）
+# 忽略 web-portfolio 的构建产物
 web-portfolio/dist
+web-portfolio/node_modules
 
 # 开发文件
 .claude
